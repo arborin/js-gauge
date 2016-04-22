@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div style="margin:0 auto; width: 300px; height: 300px;">
+    <canvas id="myCanvas" width="250" height="160" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.</canvas>
+</div>
+
+
+
+<script>
+    
+    function guage(angle) {
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        angle = Math.random()
+        ctx.beginPath();
+        ctx.strokeStyle = '#bdc3c7';
+        ctx.arc(125, 125, 100, (1+angle)*Math.PI, 2 * Math.PI);
+        ctx.lineWidth = 30;
+        
+        ctx.stroke(); 
+        
+        ctx.beginPath();
+        ctx.arc(125, 125, 100, 1*Math.PI, (1+angle) * Math.PI);
+        ctx.lineWidth = 30;
+        // line color
+        if (angle < 0.5) {
+            ctx.strokeStyle = '#27ae60';
+        }else{
+            ctx.strokeStyle = '#e74c3c';
+        }
+        
+        
+        ctx.stroke();
+        ctx.textAlign="center";
+        ctx.font="30px Arial";
+        ctx.fillStyle = "#2c3e50";
+        ctx.fillText((angle*100/6).toFixed(2),120,110);
+        ctx.font="15px Arial";
+        
+        ctx.fillText("Voltage",120,130);
+        
+    }
+    
+       
+    function clear() {
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, 500, 500);
+    }
+    
+    guage(0);
+    setInterval(function(){
+        clear()
+        guage(1.4);
+    }, 3000);
+    
+    
+    
+</script> 
+
+</body>
+</html>
